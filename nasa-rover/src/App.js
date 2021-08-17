@@ -26,9 +26,9 @@ function App() {
     <h1>Start of the rover creation</h1>
     <Switch>
       <Route exact path="/" component={Home}/>
-      <Route exact path="Curiosity" component={Curiosity} />
-      <Route exact path="Opportunity" component={Opportunity}/>
-      <Route exact path="Spirit" component={Spirit}/>
+      <Route exact path="/curiosity" component={Curiosity} />
+      <Route exact path="/opportunity" component={Opportunity}/>
+      <Route exact path="/spirit" component={Spirit}/>
     </Switch>
     </div>
   );
