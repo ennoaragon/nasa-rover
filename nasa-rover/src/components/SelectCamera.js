@@ -1,9 +1,11 @@
 import React from 'react'
+
+// styles
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
+// import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+// import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,21 +19,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SelectCamera = (props) => {
-
   const classes = useStyles();
-  // const [state, setState] = React.useState({
-  //   age: '',
-  //   name: 'hai',
-  // });
 
   const handleChange = (event) => {
-    const selectedCamera = event.target.value;
-    props.handleSelectCamera(selectedCamera);
+
+    //send back selected camera
+    props.handleSelectCamera(event.target.value);
   };
   return (
     <div>
        <FormControl className={classes.formControl}>
-        {/* <InputLabel htmlFor="uncontrolled-native">Select Camera</InputLabel> */}
         <NativeSelect
           defaultValue={"FHAZ"}
           inputProps={{

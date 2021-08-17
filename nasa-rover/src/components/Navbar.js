@@ -42,12 +42,6 @@ const Navbar = () => {
     setValue(newValue);
   };
 
-  useEffect(()=>{
-
-  },[location])
-
-  // console.log(locations.indexOf(location))
-  // console.log(location)
   return (
     <div >
     <AppBar position="static" className={classes.root}>

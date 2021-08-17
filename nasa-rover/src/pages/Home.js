@@ -31,6 +31,7 @@ const cards = [
 const Home = () => {
   return (
     <div>
+          <h1>NASA Rovers</h1>
       { cards.map((card,id) => {
         return <div key={id}>
             <MediaCard name={card.name} image={card.image} link={card.link} description={card.description}/>

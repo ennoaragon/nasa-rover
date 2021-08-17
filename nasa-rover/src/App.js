@@ -16,24 +16,15 @@ axios.defaults.headers.common['Authorization'] = process.env.REACT_APP_AXIOS_API
 
 function App() {
 
-  // Begin with the fetch call for rover data
-  // useEffect(() => {
-
-  //   return () => {
-
-  //   }
-  // }, [])
-
   return (
     <div className="App">
-    <Navbar/>
-    {/* <h1>Start of the rover creation</h1> */}
-    <Switch>
-      <Route exact path="/" component={Home}/>
-      <Route exact path="/curiosity" component={Curiosity} />
-      <Route exact path="/opportunity" component={Opportunity}/>
-      <Route exact path="/spirit" component={Spirit}/>
-    </Switch>
+      <Navbar/>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/curiosity" component={Curiosity} />
+        <Route exact path="/opportunity" component={Opportunity}/>
+        <Route exact path="/spirit" component={Spirit}/>
+      </Switch>
     </div>
   );
 }

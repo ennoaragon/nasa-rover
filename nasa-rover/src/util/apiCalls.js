@@ -7,7 +7,6 @@ export const roverPhotosApi = async (rover, sol) => {
   const apiKey = process.env.REACT_APP_AXIOS_API_KEY;
 
   const res = await axios.get(`${url}/${rover}/photos?sol=${sol}&api_key=${apiKey}`);
-
   return res.data;
  }
  catch(err){
