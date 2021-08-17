@@ -75,13 +75,13 @@ const SelectCamera = (props) => {
   useEffect(()=> {
 
   }, [props.solValue])
+  
   const handleChange = (event) => {
 
     //send back selected camera
     props.handleSelectCamera(event.target.value);
   };
 
-  console.log(props.solValue)
   const handleSolChange = (event) => {
     props.handleSolChange(event.target.value);
   }

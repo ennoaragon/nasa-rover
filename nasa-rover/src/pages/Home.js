@@ -62,7 +62,7 @@ const Home = () => {
       <h1>NASA Rovers</h1>
       <div className={classes.cards}>
         { cards.map((card,id) => {
-          return <div key={id} className={classes.card}>
+          return <div key={id} className={classes.card} >
               <MediaCard name={card.name} image={card.image} link={card.link} description={card.description}/>
             </div>
         })}

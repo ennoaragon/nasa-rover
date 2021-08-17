@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {NavLink } from 'react-router-dom';
 
 // styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,12 +11,6 @@ import Tab from '@material-ui/core/Tab';
 
 
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,17 +34,20 @@ const Navbar = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  useEffect(()=>{
 
-  }, [window.location.pathname])
+  useEffect(()=>{
+    
+  }, [value])
+  console.log(location);
+
   return (
     <div >
     <AppBar position="static" className={classes.root}>
       <Tabs value={value} onChange={handleChange}>
-        <Tab label="Home" {...a11yProps(0)} component={Link} to="/"/>
-        <Tab label="Curiosity" {...a11yProps(1)} component={Link} to="/curiosity"/>
-        <Tab label="Opportunity" {...a11yProps(2)} component={Link} to="/opportunity" />
-        <Tab label="Spirit" {...a11yProps(3)} component={Link} to="/spirit"/>
+        <Tab label="Home"  activeClassName="active" component={NavLink} to="/"/>
+        <Tab label="Curiosity"  activeClassName="active" component={NavLink} to="/curiosity"/>
+        <Tab label="Opportunity"  activeClassName="active" component={NavLink} to="/opportunity" />
+        <Tab label="Spirit"  activeClassName="active" component={NavLink} to="/spirit"/>
       </Tabs>
     </AppBar>
   </div>

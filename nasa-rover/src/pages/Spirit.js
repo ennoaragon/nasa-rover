@@ -14,6 +14,7 @@ const Spirit = () => {
   const [solValue, setSolValue] = useState(1000);
   const [curSol, setCurSol] = useState(1000);
   const [curCam, setCurCam] = useState("FHAZ");
+  const [photosLoading, setPhotosLoading] = useState(false);
 
 
   // cameras of rover 
@@ -21,12 +22,7 @@ const Spirit = () => {
 
   // get spirit images from nasa api
   useEffect(() => {
-    const setUp = async () => {
-      const data = await roverPhotosApi("spirit", selectedCam, 1000);
-      setPhotos(data.photos)
-      return null;
-    }
-    setUp();
+    handleGetPhotos();
   }, [])
 
   const handleSelectCamera = useCallback((camera) => {
@@ -54,11 +50,11 @@ const Spirit = () => {
       <h1>Spirit</h1> 
       
       <SelectCamera cams={cams} handleSelectCamera={handleSelectCamera} handleSolChange={handleSolChange} handleGetPhotos={handleGetPhotos} solValue={solValue}/>
-
+      { photosLoading && <div><CircularProgress size={75}/></div>}
     </div>
     {  photos !== null && <h3>Sol: {curSol} Camera: {curCam} Number of Photos: {photos.length} </h3>}
 
-    { photos === null ? <div><CircularProgress size={75}/></div> : 
+    { photos !== null && 
     <div>
       { photos.length > 0 && <RoverTable  photos={photos } />}
     </div>
