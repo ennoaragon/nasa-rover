@@ -99,33 +99,25 @@ const RoverTable = (props) =>  {
 
   }, [props.photos])
 
-  console.log(props.photos);
+  // console.log(props.photos);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
         <TableBody>
         <TableRow> 
-            <TableCell component="th" scope="row">
-                  Name
-                </TableCell>
-                {/* <TableCell align="right">{photo.camera.name}</TableCell> */}
+                <TableCell align="right">Image </TableCell>
                 <TableCell align="right">Launch Date</TableCell>
                 <TableCell align="right">Mission Status</TableCell>
-                <TableCell align="right">Image </TableCell>
         </TableRow>
           {(rowsPerPage > 0
             ? props.photos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : props.photos
           ).map((photo, id) => (
-
               <TableRow key={id}>
-                <TableCell component="th" scope="row">
-                  {photo.camera.name}
-                </TableCell>
-                {/* <TableCell align="right">{photo.camera.name}</TableCell> */}
+              
+                <TableCell align="right"><img alt="angle" src={photo.img_src} height={125} /></TableCell>
                 <TableCell align="right">{photo.rover.launch_date}</TableCell>
                 <TableCell align="right">{photo.rover.status}</TableCell>
-                <TableCell align="right"><img alt="angle" src={photo.img_src} height={125} /></TableCell>
               </TableRow>
           ))}
 

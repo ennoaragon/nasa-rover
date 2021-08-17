@@ -41,7 +41,9 @@ const Navbar = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  useEffect(()=>{
 
+  }, [window.location.pathname])
   return (
     <div >
     <AppBar position="static" className={classes.root}>
