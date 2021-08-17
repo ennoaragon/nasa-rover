@@ -29,7 +29,7 @@ const Curiosity = () => {
 
   const handleSelectCamera = useCallback((camera) => {
     setSelectedCam(camera);
-  }, [photos])
+  },[photos])
 
   const handleGetPhotos = async () => {
     if (isNaN(solValue) ){
@@ -37,7 +37,9 @@ const Curiosity = () => {
       setSolValue(1000)
       return;
     }
+    setPhotosLoading(true);
     const data = await roverPhotosApi("curiosity", selectedCam, solValue);
+    setPhotosLoading(false);
     setPhotos( data.photos);
     setCurCam(selectedCam);
     setCurSol(solValue);
@@ -46,7 +48,6 @@ const Curiosity = () => {
     setSolValue(value);
   }
 
-  // console.log(solValue)
 
   return (
     <div style={{maxWidth: "80%"}}>
@@ -54,8 +55,10 @@ const Curiosity = () => {
         <h1>Curiosity</h1> <SelectCamera cams={cams} handleSelectCamera={handleSelectCamera} handleSolChange={handleSolChange} handleGetPhotos={handleGetPhotos} solValue={solValue}/>
         { photosLoading && <div><CircularProgress size={75}/></div>}
       </div>
-      {  photos !== null && <h3>Sol: {curSol} Camera: {curCam} Number of Photos: {photos.length} </h3>}
-      { photos !== null && <div> { photos.length > 0 && <RoverTable  photos={photos } />} </div>}
+      {  false && <h3>Sol: {curSol} Camera: {curCam} Number of Photos: {photos.length} </h3>}
+      {  !photosLoading && photos.length > 0 && <RoverTable  photos={photos } /> }
+      {  !photosLoading && photos.length === 0 && <h1>No Images Found</h1> }
+
     </div>
   )
 }

@@ -8,7 +8,6 @@ import MediaCard from '../components/MediaCard';
 // styles
 import { makeStyles } from '@material-ui/core/styles';
 
-
 // import Skeleton from '@material-ui/lab/Skeleton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -51,11 +50,11 @@ const Opportunity = () => {
   // get Opportunity images from nasa api
   useEffect(() => {
     handleGetPhotos();
-  }, [])
+  },[])
 
   const handleSelectCamera = useCallback((camera) => {
     setSelectedCam(camera);
-  }, [photos])
+  }, [])
 
   const handleGetPhotos = async () => {
     if (isNaN(solValue) ){
@@ -63,7 +62,9 @@ const Opportunity = () => {
       setSolValue(1000)
       return;
     }
+    setPhotosLoading(true);
     const data = await roverPhotosApi("opportunity", selectedCam, solValue);
+    setPhotosLoading(false);
     setPhotos( data.photos);
     setCurCam(selectedCam);
     setCurSol(solValue);
@@ -79,13 +80,13 @@ const Opportunity = () => {
       
       <SelectCamera cams={cams} handleSelectCamera={handleSelectCamera} handleSolChange={handleSolChange} handleGetPhotos={handleGetPhotos} solValue={solValue}/>
 
-    </div>
     { photosLoading && <div><CircularProgress size={75}/></div>}
+    </div>
     { photos.length > 0 &&  
       <div> 
         {  photos !== null && <h3>Sol: {curSol} Camera: {curCam} Number of Photos: {photos.length} </h3>}
 
-        { photos !== null &&
+        { !photosLoading &&
         <>
           { photos.length > 0 && 
           <div className={classes.cards}>
@@ -104,7 +105,7 @@ const Opportunity = () => {
         }
       </div>
     }
-      {photos.length === 0 && <h1>No Images Found Try another Sol or Camera</h1>}
+      { !photosLoading && photos.length === 0 && <h1>No Images Found Try another Sol or Camera</h1>}
   </div>
   )
 }

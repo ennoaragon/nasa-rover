@@ -106,6 +106,8 @@ const RoverTable = (props) =>  {
         <TableBody>
         <TableRow> 
                 <TableCell align="right">Image </TableCell>
+                <TableCell align="right">Sol</TableCell>
+                <TableCell align="right">Camera</TableCell>
                 <TableCell align="right">Launch Date</TableCell>
                 <TableCell align="right">Mission Status</TableCell>
         </TableRow>
@@ -116,6 +118,8 @@ const RoverTable = (props) =>  {
               <TableRow key={id}>
               
                 <TableCell align="right"><img alt="angle" src={photo.img_src} height={125} /></TableCell>
+                <TableCell align="right">{photo.sol}</TableCell>
+                <TableCell align="right">{photo.camera.name}</TableCell>
                 <TableCell align="right">{photo.rover.launch_date}</TableCell>
                 <TableCell align="right">{photo.rover.status}</TableCell>
               </TableRow>
