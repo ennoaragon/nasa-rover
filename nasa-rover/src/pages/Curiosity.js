@@ -15,7 +15,7 @@ const Curiosity = () => {
       //   sol: "sol=0",
       //   api_key: process.env.REACT_APP_AXIOS_API_KEY,
       // }})
-      axios.get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=3&api_key=fr9whaDN6x918bcnGALL8UWnf1fkHYqItqxxz7dw")
+      axios.get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=0&api_key=fr9whaDN6x918bcnGALL8UWnf1fkHYqItqxxz7dw")
       .then(res=> console.log("Data: ", res.data)).catch(err => console.log("error: ", err.message))
     }
     apiCall();
