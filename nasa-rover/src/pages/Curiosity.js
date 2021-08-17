@@ -14,7 +14,7 @@ const cams = ["FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
 const Curiosity = () => {
   
   const [photos, setPhotos] = useState(null);
-  const [selection, setSelection] = useState("FHAZ");
+  const [selectedCam, setSelectedCam] = useState("FHAZ");
   //TODO: Create helper functions to parse through the images
 
   // get curiosity images from nasa api
@@ -28,19 +28,19 @@ const Curiosity = () => {
     setUp();
   }, [])
 
-  const handleSelection = () => {
-
+  const handleSelectCamera = (camera) => {
+    setSelectedCam(camera);
   } 
   // console.log("we did it: ", photos)
+  console.log("selectedCam: ", selectedCam)
   return (
     //  name, launch date, mission status and number of photos for the rover that is selected
 
     <div>
       <div>
-        <h1>Curiosity</h1> <SelectCamera cams={cams} />
+        <h1>Curiosity</h1> <SelectCamera cams={cams} handleSelectCamera={handleSelectCamera}/>
 
       </div>
-      <h2>Select Camera</h2>
      
       {  photos !== null && <h3>number of photos: {photos.length} </h3>}
 

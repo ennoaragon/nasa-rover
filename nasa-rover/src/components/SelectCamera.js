@@ -25,13 +25,14 @@ const SelectCamera = (props) => {
   // });
 
   const handleChange = (event) => {
-    const name = event.target.name;
-    console.log(name);
+    const selectedCamera = event.target.value;
+    // console.log(name);
     
     // setState({
     //   ...state,
     //   [name]: event.target.value,
     // });
+    props.handleSelectCamera(selectedCamera);
   };
   return (
     <div>
@@ -43,10 +44,11 @@ const SelectCamera = (props) => {
             name: 'name',
             id: 'uncontrolled-native',
           }}
+          onChange={handleChange}
         >
-          {/* {props.cams.maps(() => {
-            return <option value={10}>Ten</option>
-          } )} */}
+          {props.cams.map((cam) => {
+            return <option value={cam}>{cam}</option>
+          } )}
           {/* <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option> */}
