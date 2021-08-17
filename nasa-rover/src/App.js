@@ -11,8 +11,6 @@ import Spirit from './pages/Spirit';
 import './App.css';
 import Navbar from './components/Navbar';
 
-
-
 axios.defaults.baseURL = process.env.REACT_APP_AXIOS_NASA_ROVER;
 axios.defaults.headers.common['Authorization'] = process.env.REACT_APP_AXIOS_API_KEY;
 
@@ -20,16 +18,16 @@ function App() {
 
   // Begin with the fetch call for rover data
   // useEffect(() => {
-    
+
   //   return () => {
-      
+
   //   }
   // }, [])
 
   return (
     <div className="App">
     <Navbar/>
-    <h1>Start of the rover creation</h1>
+    {/* <h1>Start of the rover creation</h1> */}
     <Switch>
       <Route exact path="/" component={Home}/>
       <Route exact path="/curiosity" component={Curiosity} />

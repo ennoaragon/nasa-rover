@@ -1,29 +1,69 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
 import { roverPhotosApi } from '../util/apiCalls';
+
+//componenets
+import SelectCamera from '../components/SelectCamera'
+
+// styles
+// import Skeleton from '@material-ui/lab/Skeleton';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+const cams = ["FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
 
 const Curiosity = () => {
   
-  const [content, setContent] = useState(null);
-
+  const [photos, setPhotos] = useState(null);
+  const [selection, setSelection] = useState("FHAZ");
   //TODO: Create helper functions to parse through the images
 
   // get curiosity images from nasa api
   useEffect(() => {
     const setUp = async () => {
-      const data = await roverPhotosApi("curiosity", 3);
-      setContent(...data)
+      const data = await roverPhotosApi("curiosity", 1000);
+      // console.log("data:", data)
+      setPhotos(data.photos)
       return null;
     }
     setUp();
   }, [])
 
-  console.log("we did it: ", content)
+  const handleSelection = () => {
+
+  } 
+  // console.log("we did it: ", photos)
   return (
+    //  name, launch date, mission status and number of photos for the rover that is selected
+
     <div>
-      <h1>Curiosity!</h1>
-      <p>{content}</p>
+      <div>
+        <h1>Curiosity</h1> <SelectCamera cams={cams} />
+
+      </div>
+      <h2>Select Camera</h2>
+     
+      {  photos !== null && <h3>number of photos: {photos.length} </h3>}
+
+      { photos === null ? <div><CircularProgress size={75}/></div> : 
+      <div>
+        { photos.map((photo) => {
+          return <>
+            <div>
+              name: {photo.camera.name}
+            </div>
+            <div>
+            launch_date: {photo.rover.launch_date}
+            </div>
+            <div>
+            mission status: {photo.rover.status}
+            </div>
+            <div>
+            
+            </div>
+          </>
+        })} 
+      </div>
+      }
     </div>
   )
 }
