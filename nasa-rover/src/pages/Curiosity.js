@@ -13,7 +13,8 @@ const Curiosity = () => {
   useEffect(() => {
     const setUp = async () => {
       const data = await roverPhotosApi("curiosity", 3);
-      setContent(data)
+      setContent(...data)
+      return null;
     }
     setUp();
   }, [])
