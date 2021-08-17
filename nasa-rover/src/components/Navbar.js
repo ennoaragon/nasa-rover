@@ -35,11 +35,6 @@ const Navbar = () => {
     setValue(newValue);
   };
 
-  useEffect(()=>{
-    
-  }, [value])
-  console.log(location);
-
   return (
     <div >
     <AppBar position="static" className={classes.root}>
