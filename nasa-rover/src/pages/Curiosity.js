@@ -9,13 +9,11 @@ import SelectCamera from '../components/SelectCamera'
 // import Skeleton from '@material-ui/lab/Skeleton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-
-
 const Curiosity = () => {
   
   const [photos, setPhotos] = useState(null);
   const [selectedCam, setSelectedCam] = useState("FHAZ");
-  const [selectedPhotos, setSelectedPhotos] = useState(null);
+  const [selectedPhotos, setSelectedPhotos] = useState([]);
 
   // cameras of rover 
   const cams = ["FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
@@ -37,9 +35,7 @@ const Curiosity = () => {
     setSelectedCam(camera);
     setSelectedPhotos( selectedCameraArray(photos, camera))
   }, [])
-  // console.log("we did it: ", photos)
-  // console.log("selectedCam: ", selectedCam)
-  console.log( "selectedPhotos", selectedPhotos)
+
   return (
     //  name, launch date, mission status and number of photos for the rover that is selected
 
