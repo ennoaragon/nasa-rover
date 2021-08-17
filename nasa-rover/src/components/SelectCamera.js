@@ -26,18 +26,12 @@ const SelectCamera = (props) => {
 
   const handleChange = (event) => {
     const selectedCamera = event.target.value;
-    // console.log(name);
-    
-    // setState({
-    //   ...state,
-    //   [name]: event.target.value,
-    // });
     props.handleSelectCamera(selectedCamera);
   };
   return (
     <div>
        <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="uncontrolled-native">Select Camera</InputLabel>
+        {/* <InputLabel htmlFor="uncontrolled-native">Select Camera</InputLabel> */}
         <NativeSelect
           defaultValue={"FHAZ"}
           inputProps={{
@@ -46,14 +40,12 @@ const SelectCamera = (props) => {
           }}
           onChange={handleChange}
         >
-          {props.cams.map((cam) => {
-            return <option value={cam}>{cam}</option>
+          {props.cams.map((cam,id) => {
+            return <option value={cam} key={id}>{cam}</option>
           } )}
-          {/* <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option> */}
+       
         </NativeSelect>
-        <FormHelperText>Uncontrolled</FormHelperText>
+        <FormHelperText>Select Camera</FormHelperText>
       </FormControl>
     </div>
   )

@@ -31,8 +31,10 @@ const cards = [
 const Home = () => {
   return (
     <div>
-      { cards.map((card) => {
-        return <MediaCard name={card.name} image={card.image} link={card.link} description={card.description}/>
+      { cards.map((card,id) => {
+        return <div key={id}>
+            <MediaCard name={card.name} image={card.image} link={card.link} description={card.description}/>
+          </div>
       })}
     </div>
   )

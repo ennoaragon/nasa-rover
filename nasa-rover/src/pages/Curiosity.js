@@ -1,7 +1,7 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { roverPhotosApi } from '../util/apiCalls';
 
+import { selectedCameraArray } from '../util/helpFunctions';
 //componenets
 import SelectCamera from '../components/SelectCamera'
 
@@ -9,13 +9,16 @@ import SelectCamera from '../components/SelectCamera'
 // import Skeleton from '@material-ui/lab/Skeleton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const cams = ["FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
+
 
 const Curiosity = () => {
   
   const [photos, setPhotos] = useState(null);
   const [selectedCam, setSelectedCam] = useState("FHAZ");
-  //TODO: Create helper functions to parse through the images
+  const [selectedPhotos, setSelectedPhotos] = useState(null);
+
+  // cameras of rover 
+  const cams = ["FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
 
   // get curiosity images from nasa api
   useEffect(() => {
@@ -23,16 +26,20 @@ const Curiosity = () => {
       const data = await roverPhotosApi("curiosity", 1000);
       // console.log("data:", data)
       setPhotos(data.photos)
+     
+      setSelectedPhotos( selectedCameraArray(data.photos, selectedCam))
       return null;
     }
     setUp();
   }, [])
 
-  const handleSelectCamera = (camera) => {
+  const handleSelectCamera = useCallback((camera) => {
     setSelectedCam(camera);
-  } 
+    setSelectedPhotos( selectedCameraArray(photos, camera))
+  }, [])
   // console.log("we did it: ", photos)
-  console.log("selectedCam: ", selectedCam)
+  // console.log("selectedCam: ", selectedCam)
+  console.log( "selectedPhotos", selectedPhotos)
   return (
     //  name, launch date, mission status and number of photos for the rover that is selected
 
@@ -42,12 +49,12 @@ const Curiosity = () => {
 
       </div>
      
-      {  photos !== null && <h3>number of photos: {photos.length} </h3>}
+      {  photos !== null && <h3>number of {selectedCam} photos: {selectedPhotos.length} </h3>}
 
       { photos === null ? <div><CircularProgress size={75}/></div> : 
       <div>
-        { photos.map((photo) => {
-          return <>
+        { selectedPhotos.map((photo,id) => {
+          return <div key={id}>
             <div>
               name: {photo.camera.name}
             </div>
@@ -57,10 +64,7 @@ const Curiosity = () => {
             <div>
             mission status: {photo.rover.status}
             </div>
-            <div>
-            
-            </div>
-          </>
+          </div>
         })} 
       </div>
       }

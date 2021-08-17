@@ -14,5 +14,4 @@ export const roverPhotosApi = async (rover, sol) => {
   console.log("error: ", err.message)
   return null
  }
- 
 }
